@@ -38,18 +38,16 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web' //, version:'2.0.0.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'  //, version:'2.0.0.RELEASE'
-    
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+
+	// While the other spring dependencies don't need versions, this one does. 
+	// reason unknown. jhrg 12/30/18    
     compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.1.RELEASE'
-    // 
-    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure' //, version:'2.0.0.RELEASE'
 
     compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
     compile group: 'javax.servlet', name: 'jstl'
 
-    // compile group: 'org.apache.maven.plugins', name: 'maven-jar-plugin', version:'3.0.0'
-    
     // These are not needed when a war file is run inside tomcat. Marking these 
     // as 'provided at runtime' does not break the 'bootRun' target.
     providedRuntime group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat'
