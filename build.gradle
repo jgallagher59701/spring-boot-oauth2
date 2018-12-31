@@ -1,11 +1,11 @@
-// The 'buildscript' block holds what gradle needs to run the build script
+
 buildscript {
     repositories {
-        //Required repos
+        // Required repos
         mavenCentral()
     }
     dependencies {
-        //Required dependency for spring-boot plugin
+        // Required dependency for spring-boot plugin
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE'
     }
 }
@@ -14,7 +14,8 @@ plugins {
 	id 'java'
 	id 'war'
 	id 'eclipse'
-
+	id 'idea'
+	
 	// See https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
 	// for information about features of the org.springframework.boot plugin.
 	id 'org.springframework.boot' version '2.1.0.RELEASE'
@@ -23,35 +24,34 @@ plugins {
 	// versions could be left off of the dependencies.
 	id "io.spring.dependency-management" version "1.0.6.RELEASE"
 }
-//apply plugin: 'java'
-apply plugin: 'maven'
 
 group = 'com.programmer.gate'
 version = '0.0.1-SNAPSHOT'
 
 description = """Spring Boot OAuth2"""
 
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
-}
-
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
-        
-     maven { url "https://repo.spring.io/milestone" }
-     maven { url "https://repo.spring.io/snapshot" }
-     maven { url "https://dl.bintray.com/rabbitmq/maven-milestones" }
-     maven { url "http://repo.maven.apache.org/maven2" }
+	mavenCentral()
 }
+
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.0.0.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'2.0.0.RELEASE'
-    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version:'2.0.0.RELEASE'
-    compile group: 'org.apache.maven.plugins', name: 'maven-jar-plugin', version:'3.0.0'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web' //, version:'2.0.0.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'  //, version:'2.0.0.RELEASE'
     
-    // providedCompile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version:'8.5.28'
-    // providedRuntime group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version:'8.5.28'
+    compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.1.RELEASE'
+    // 
+    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure' //, version:'2.0.0.RELEASE'
+
+    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+    compile group: 'javax.servlet', name: 'jstl'
+
+    // compile group: 'org.apache.maven.plugins', name: 'maven-jar-plugin', version:'3.0.0'
+    
+    // These are not needed when a war file is run inside tomcat. Marking these 
+    // as 'provided at runtime' does not break the 'bootRun' target.
+    providedRuntime group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat'
+    providedRuntime group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
 }
