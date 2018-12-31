@@ -25,7 +25,8 @@ plugins {
 	id "io.spring.dependency-management" version "1.0.6.RELEASE"
 }
 
-group = 'com.programmer.gate'
+//group = 'com.programmer.gate'
+group = 'com.programmer'
 version = '0.0.1-SNAPSHOT'
 
 description = """Spring Boot OAuth2"""
@@ -43,7 +44,7 @@ dependencies {
 
 	// While the other spring dependencies don't need versions, this one does. 
 	// reason unknown. jhrg 12/30/18    
-    compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.1.RELEASE'
+    compile 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.0.RELEASE'
 
     compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
     compile group: 'javax.servlet', name: 'jstl'
